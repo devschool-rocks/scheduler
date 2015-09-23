@@ -1,0 +1,7 @@
+<main id="calendar">
+  <h1>Jim's Availability for <%= @calendar.month %> <%= @calendar.year %></h1>
+  <%= render partial: 'headers' %>
+  <%= render partial: 'week', collection: @calendar.to_a %>
+</main>
+
+<%= render "modal" %>
