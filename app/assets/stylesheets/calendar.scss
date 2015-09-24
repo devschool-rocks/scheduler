@@ -1,6 +1,31 @@
 html,body{margin:0;padding:0;border:0;font-size:100%;height:100%}
 body {font: 0.8em/1.5em 'Arial', sans-serif;}
 
+
+#agenda {
+  overflow: scroll;
+  height: 100%;
+
+  .hour {
+    border: 1px solid #999;
+    margin: 4px;
+    padding: 4px auto;
+    color: #666;
+  }
+
+  .unavailable {
+    display: none;
+  }
+
+  .hour::after {
+    font-size: 2em;
+    content: attr(data-hour);
+    display: block;
+    padding-left: 0.5em;
+    line-height: 3em;
+  }
+}
+
 /* Calendar 100% height */
 #calendar {
   position: relative;
@@ -35,15 +60,15 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
   }
   .week>div {
     border-top: 1px solid #eee;
-    padding: 20px 2px 2px;
-    min-height: 50px;
     position: relative; /* allow ::after psuedo element absolute positioning */
+    display: block;
   }
   .th>span, .week>div {
     width: 100%;
     margin-right: 5px;
     color: #333;
   }
+
   /* Dates */
   .week>div::after {
     content: attr(data-day);
@@ -53,13 +78,18 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
     color: #999;
   }
 
+  .week .today {
+    border: 1px solid #ff0000;
+  }
+
+  .week .today::after {
+    color: #ff0000;
+  }
+
   /* Weekends */
   .th>span:first-child,    .th>span:last-child,
-    .week>div:first-child, .week>div:last-child {
-    background:#f3f3f3
-  }
-  .th>span:last-child, .week>div:last-child {
-    margin-right:0
+  .week>div:first-child,   .week>div:last-child {
+    display: none;
   }
 
 }

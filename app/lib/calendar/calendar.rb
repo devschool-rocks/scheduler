@@ -1,12 +1,5 @@
-require 'active_support/core_ext/date'
-require 'active_support/core_ext/time'
-require 'active_support/core_ext/array'
-
-require 'calendar/day_styles'
-require 'calendar/weeks'
-
 module Calendar
-  class HtmlCalendar
+  class Calendar
     attr_reader :month, :year
 
     def initialize(date=Date.today)
@@ -34,8 +27,7 @@ module Calendar
     end
 
     def calendar_weeks
-      @calendar_weeks ||= Calendar::Weeks.new(@date)
+      @calendar_weeks ||= Weeks.new(@date)
     end
   end
 end
-

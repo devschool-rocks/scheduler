@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  $(".day.today, .day.future").on("click", function() {
+    $("#agendaModal").modal()
+  });
+});
