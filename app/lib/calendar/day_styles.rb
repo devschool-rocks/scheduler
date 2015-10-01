@@ -8,7 +8,7 @@ module Calendar
       [past, today, future, other_month].compact.join(" ")
     end
 
-    private
+  private
 
     def past
       "past" if @date < Date.today

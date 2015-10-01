@@ -20,8 +20,9 @@ private
   def agenda
     @agenda ||= Calendar::Agenda.new(
       date: DateTime.parse(the_date.to_s),
-      start_hour: 10,
-      end_hour: 20
+      start_hour: 15,
+      end_hour: 23,
+      appointments: Appointment.occuring_on(the_date)
     )
   end
 end

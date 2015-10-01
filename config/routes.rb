@@ -1,6 +1,26 @@
 Rails.application.routes.draw do
-  resource :calendar
-  root "calendar#show"
+  devise_for :customers, controllers: { registrations: 'customer_registrations' }
+  devise_for :instructors
+
+  resources :agenda
+
+  authenticated :instructor do
+    devise_scope :instructor do
+      resources :appointments
+      root to: "appointments#index", as: :instructor_root
+    end
+  end
+
+  authenticated :customer do
+    devise_scope :customer do
+      resources :appointments, only: [:create]
+      root to: "calendar#show", as: :customer_root
+    end
+  end
+
+  unauthenticated do
+    root to: "homepage#index"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

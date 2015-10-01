@@ -1,0 +1,35 @@
+#agenda {
+  overflow: scroll;
+  height: 100%;
+
+  .hour {
+    border: 1px solid #999;
+    margin: 4px;
+    padding: 4px auto;
+    color: #666;
+    font-size: 2em;
+    display: block;
+    padding-left: 1em;
+    line-height: 3em;
+  }
+
+  .unavailable {
+    background-color: #ddd;
+  }
+
+  .approved {
+    background-color: #BAE2BA;
+    color: white;
+  }
+
+  .unapproved {
+    border: 2px dotted #BAE2BA;
+    color: green;
+  }
+
+  .hour::after {
+    content: attr(data-hour);
+    display: block;
+  }
+}
+

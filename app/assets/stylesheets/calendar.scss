@@ -1,44 +1,17 @@
-html,body{margin:0;padding:0;border:0;font-size:100%;height:100%}
-body {font: 0.8em/1.5em 'Arial', sans-serif;}
-
-
-#agenda {
-  overflow: scroll;
-  height: 100%;
-
-  .hour {
-    border: 1px solid #999;
-    margin: 4px;
-    padding: 4px auto;
-    color: #666;
-  }
-
-  .unavailable {
-    display: none;
-  }
-
-  .hour::after {
-    font-size: 2em;
-    content: attr(data-hour);
-    display: block;
-    padding-left: 0.5em;
-    line-height: 3em;
-  }
-}
-
-/* Calendar 100% height */
 #calendar {
   position: relative;
-  height: 100%; 
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
+  border: 1px solid #666;
+  margin: 0;
+  padding: 0;
 
   h1 {
     margin: 0;
     padding: 0.4em;
-    text-align: center;
     background-color: #f3f3f3;
+    text-align: center;
   }
 
   .th {
@@ -48,15 +21,14 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
   } 
   .week {
     flex: 40px 1 0;
-    border-bottom: 1px solid #ccc;    
+    border-bottom: 1px solid #ccc;
   }
 
-  /* Calendar rows */
   .th, .week { display: flex; }
   .th>span {
     border-bottom: 4px solid rgba(255,0,0,0.3);
     padding: 0 1px 2px 0;
-    text-align: right;
+    text-align: center;
   }
   .week>div {
     border-top: 1px solid #eee;
@@ -65,7 +37,6 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
   }
   .th>span, .week>div {
     width: 100%;
-    margin-right: 5px;
     color: #333;
   }
 
@@ -82,6 +53,10 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
     border: 1px solid #ff0000;
   }
 
+  .day.past {
+    background-color: #eee;
+  }
+
   .week .today::after {
     color: #ff0000;
   }
@@ -91,5 +66,4 @@ body {font: 0.8em/1.5em 'Arial', sans-serif;}
   .week>div:first-child,   .week>div:last-child {
     display: none;
   }
-
 }

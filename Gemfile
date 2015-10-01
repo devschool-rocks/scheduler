@@ -27,6 +27,13 @@ gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
 
+gem 'devise-bootstrap-views'
+
+gem 'devise'
+gem 'local_time'
+gem 'responders'
+gem 'handlebars-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -18,9 +18,11 @@ module Calendar
 
   private
 
-    #def events_for_date(date)
-    #  @events.select {|e| e.ocurrs_on == date }
-    #end
+    attr_reader :appointments
+
+    def appointments_for_date(date)
+      appointments.select {|e| e.starts_at.to_date == date }
+    end
 
     def day_styles(date)
       DayStyles.new(date).to_s

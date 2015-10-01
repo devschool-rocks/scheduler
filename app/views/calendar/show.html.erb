@@ -1,24 +1,9 @@
-    <main id="calendar" class="col-md-12">
-      <h1><%= @calendar.month %> <%= @calendar.year %></h1>
-      <%= render partial: 'headers' %>
-      <%= render partial: 'week', 
-        collection: @calendar.to_a %>
-    </main>
+<%= render 'hbs/agenda' %>
+<%= render 'modals/agenda' %>
+<%= render 'modals/book_slot' %>
 
-    <div class="modal" id="agendaModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4><span class="glyphicon glyphicon-calendar"></span> Pick a time</h4>
-          </div>
-          <div class="modal-body">
-            <ul id="agenda" class="list-unstyled">
-            <%= render partial: 'hour', 
-                       collection: @agenda.to_a %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<div id="calendar" class="fill col-md-12">
+  <h1>Jim's Availability for <%= @calendar.month %> <%= @calendar.year %></h1>
+  <%= render partial: 'headers' %>
+  <%= render partial: 'week', collection: @calendar.to_a %>
+</div>
