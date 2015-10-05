@@ -1,9 +1,42 @@
+<%- content_for :js do %>
+$(document).ready(function() {
+  $(".nav-tabs").tab();
+});
+<%- end %>
+
 <div class="container">
-<div class="row">
-<div class="col-md-12">
-<ul id="agenda" class="list-unstyled">
-  <%= render partial: 'appointment', collection: @appointments %>
-</ul>
-</div>
-</div>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#approved" aria-controls="approved" role="tab" 
+        data-toggle="tab">Upcoming</a>
+    </li>
+    <li role="presentation"><a href="#unapproved" aria-controls="unapproved" 
+        role="tab" data-toggle="tab">Awaiting approval (<%= @appointments.unapproved.count %>)</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="unapproved">
+      <h2>Unapproved</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <ul id="agenda" class="unapproved-list list-unstyled">
+            <%= render partial: 'appointment', collection: @appointments.unapproved %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane active" id="approved">
+      <h2>Accepted</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <ul id="agenda" class="accepted-list list-unstyled">
+            <%= render partial: 'appointment', collection: @appointments.approved %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

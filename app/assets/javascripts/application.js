@@ -26,15 +26,15 @@ $(document).ready(function() {
 
   $("body").on("click", "#agenda .hour.available", function(e) {
     var timezone = jstz.determine();
-    var startAt = $(e.currentTarget).html();
-    var startOn = $("#selectedDate").html();
-    var formattedDate = new Date(Date.parse((startOn + " 2015 " + startAt).replace("\n","")));
-    var timeStamp = moment(formattedDate).utc()
+    var startAt = $(e.currentTarget).html().trim();
+    var startOn = $("#selectedDate").html().trim();
+    var suggestion = moment(startOn + ' ' + startAt, "MMMM Do YYYY hh:mm a").toDate()
+    var formattedDate = new Date(suggestion);
     if (currentUserId) {
       bookIt = $("#bookSlotModal");
       bookIt.find("#selectedTime").html(startAt);
       bookIt.find("#selectedDate").html(startOn);
-      bookIt.find("#appointment_start_at").val(timeStamp);
+      bookIt.find("#appointment_start_at").val(formattedDate);
       bookIt.modal();
     } else {
       $("#loginModal").modal();
@@ -53,7 +53,7 @@ $(document).ready(function() {
     var template = Handlebars.compile(source);
     var html     = template(context);
     $("#agendaModal #agenda").html(html);
-    $("#agendaModal #selectedDate").html(LocalTime.strftime(new Date(date), "%b %d"));
+    $("#agendaModal #selectedDate").html(moment(date).format("MMMM Do YYYY"));
     $("#agendaModal").modal();
   });
 });

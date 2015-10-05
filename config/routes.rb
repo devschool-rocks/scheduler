@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   authenticated :instructor do
     devise_scope :instructor do
       resources :appointments
+      resources :approved_appointments, only: [:create]
       root to: "appointments#index", as: :instructor_root
     end
   end

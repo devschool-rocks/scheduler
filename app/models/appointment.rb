@@ -11,17 +11,28 @@ class Appointment < ActiveRecord::Base
 
   scope :current, -> {
     with_suggestions.
-      where("time_suggestions.start_at >= ?", DateTime.now.utc)
+    where("time_suggestions.start_at >= ?", DateTime.now.utc).
+    ordered
   }
 
   scope :approved, -> {
-    with_suggestions.approved
+    with_suggestions.where("time_suggestions.accepted_at IS NOT NULL")
+  }
+
+  scope :unapproved, -> {
+    current - approved
+  }
+
+  scope :ordered, -> {
+    with_suggestions.
+    order("max(time_suggestions.start_at) ASC").
+    group("appointments.id, time_suggestions.id")
   }
 
   scope :with_suggestions, -> {
-    joins("LEFT JOIN time_suggestions ON
-           time_suggestions.appointment_id = appointments.id").
-           distinct
+    joins(:time_suggestions).
+      includes(:time_suggestions)
+
   }
 
   def approved?
@@ -36,8 +47,14 @@ class Appointment < ActiveRecord::Base
     time_suggestions.build(start_at: val)
   end
 
-  def start_at
+  def suggested_start_at
     suggestion = time_suggestions.last
     suggestion && suggestion.start_at
+  end
+  alias_method :start_at, :suggested_start_at
+
+  def approved_start_at
+    appointment = time_suggestions.approved.first
+    appointment && appointment.start_at
   end
 end
