@@ -1,16 +1,9 @@
-<h1 class="text-right">Expert 1 on 1 Ruby, Rails, JavaScript, and SQL Help</h1>
-<h3 class="text-right">Brought to you by the <a href="https://onlinedevschool.com">Online DevSchool</a></h3>
+<h1 class="text-right">Expert 1 on 1 help with
+<br>Ruby, Rails, JavaScript, and SQL</h1>
+
 <div class="container">
   <div class="row">
     <p>&nbsp;</p>
-    <div class="col-md-6">
-      <%= render partial: 'devise/registrations/form',
-        locals: {
-          resource: Customer.new,
-          resource_name: :customer,
-          devise_mapping: Devise.mappings[:customer]
-      } %>
-    </div>
     <div class="col-md-6">
       <%= render partial: 'devise/sessions/form',
         locals: {
@@ -19,5 +12,15 @@
           devise_mapping: Devise.mappings[:customer]
       } %>
     </div>
+    <div class="col-md-6">
+      <%= render partial: 'devise/registrations/form',
+        locals: {
+          resource: Customer.new,
+          resource_name: :customer,
+          devise_mapping: Devise.mappings[:customer]
+      } %>
+    </div>
   </div>
+<h3 class="text-right">Brought to you by the 
+  <a href="https://onlinedevschool.com">Devschool</a></h3>
 </div>

@@ -2,7 +2,7 @@
 <span class="hidden-xs">requests a time of</span>
 <strong><%= local_time(appointment.suggested_start_at) %></strong>
 <span class="pull-right right-link">
-  <%= link_to approved_appointments_path(appointment_id: appointment.id), method: :post do %>
+  <%= link_to instructors_approvals_path(appointment_id: appointment.id), method: :post do %>
     <%= glyph("ok_circle", {:tag => :span}) %>
   <% end %>
   <%= link_to "#" do %>

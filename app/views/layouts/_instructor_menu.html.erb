@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <%= render 'layouts/navbar' %>
+
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Home", instructors_appointments_path %></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" 
+                      data-toggle="dropdown" role="button"
+                                            aria-haspopup="true" aria-expanded="true">account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'sign out', destroy_customer_session_path %></li>
+          </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

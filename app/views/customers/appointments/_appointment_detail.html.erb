@@ -1,0 +1,11 @@
+<div class="well">
+<h3>You have an <%= appointment_detail.current? ? "UPCOMING" : "past" %> appointment
+with Jim OKelly</h3> 
+
+<h4>The start time is at <%= local_time(appointment_detail.start_at) %>
+and the agreed rate is <%= number_to_currency(Appointment::DEFAULT_RATE) %>/hr
+billed in increments of 15 minutes</h4>
+
+<p>Your notes:</p>
+<p><strong><%= appointment_detail.notes %></strong></p>
+</div>

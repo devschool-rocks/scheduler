@@ -17,7 +17,6 @@ Bundler.require(*Rails.groups)
 
 module Scheduler
   class Application < Rails::Application
-
     config.eager_load_paths += %W( #{config.root}/app/lib )
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -34,5 +33,14 @@ module Scheduler
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators do |g|
+      g.test_framework :minitest, spec: true, fixture: false
+      g.assets  false
+      g.javascripts  false
+      g.helper false
+      g.stylesheets false
+    end
   end
 end
+

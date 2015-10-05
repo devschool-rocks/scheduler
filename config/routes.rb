@@ -6,16 +6,22 @@ Rails.application.routes.draw do
 
   authenticated :instructor do
     devise_scope :instructor do
-      resources :appointments
-      resources :approved_appointments, only: [:create]
-      root to: "appointments#index", as: :instructor_root
+      namespace :instructors do
+        resources :appointments
+        resources :approvals, only: [:create]
+        resource  :calendar
+      end
+      root to: "instructors/appointments#index", as: :instructor_root
     end
   end
 
   authenticated :customer do
     devise_scope :customer do
-      resources :appointments, only: [:create]
-      root to: "calendar#show", as: :customer_root
+      namespace :customers do
+        resources :appointments, only: [:index, :create, :show]
+        resource  :calendar
+      end
+      root to: "customers/calendar#show", as: :customer_root
     end
   end
 

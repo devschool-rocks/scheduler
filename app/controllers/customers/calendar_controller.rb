@@ -1,6 +1,6 @@
 require 'calendar'
 
-class CalendarController < ApplicationController
+class Customers::CalendarController < Customers::ApplicationController
 
   def show
     calendar

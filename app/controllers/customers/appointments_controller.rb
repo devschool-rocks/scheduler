@@ -1,14 +1,16 @@
-class AppointmentsController < ApplicationController
-  before_action :authenticate_instructor!, only: [:index]
-  before_action :authenticate_customer!, only: [:create]
+class Customers::AppointmentsController < Customers::ApplicationController
 
   def index
-    @appointments = Appointment.current
+    @appointments = current_customer.appointments
   end
 
   def create
     new_appointment.save
-    render json: new_appointment.to_json
+    redirect_to :customers_appointments
+  end
+
+  def show
+    @appointment = current_customer.appointments.find(params[:id])
   end
 
 private

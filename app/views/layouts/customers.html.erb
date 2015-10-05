@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <%= render 'layouts/head' %>
-  <body>
 
+  <body>
     <%= render 'layouts/customer_menu' %>
 
     <div class="container main fill">
@@ -13,7 +13,6 @@
       <%= current_customer.try(:id) %>
     </div>
 
-    <%= render 'customers/modals/login_or_register' %>
     <%= javascript_include_tag "application" %>
     <%- if content_for?(:js) %>
       <script><%= yield(:js) %></script>

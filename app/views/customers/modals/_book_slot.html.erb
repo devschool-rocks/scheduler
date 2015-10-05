@@ -8,8 +8,8 @@
         <h4>With Web Development Expert, Jim OKelly</h4>
       </div>
       <div class="modal-body">
-        <%- if current_customer %>
-          <%= form_for current_customer.appointments.build do |f| %>
+        <%- if customer_signed_in? %>
+          <%= form_for [:customers, current_customer.appointments.build] do |f| %>
             <%= f.hidden_field :start_at %>
             <div class="form-group">
               <label for="appointment_notes">What do you want to accomplish in this session?</label>

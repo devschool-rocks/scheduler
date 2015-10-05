@@ -1,0 +1,8 @@
+<strong><%= appointment.customer.name %></strong>
+<span class="hidden-xs">is scheduled for</span>
+<strong><%= local_time(appointment.approved_start_at) %></strong>
+<span class="pull-right right-link">
+<%= link_to instructors_appointment_path(appointment) do %>
+    <%= glyph("eye_open", { tag: :span}) %>
+<% end %>
+</span>

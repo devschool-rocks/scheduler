@@ -2,7 +2,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :customer
   has_many :time_suggestions, dependent: :destroy
 
-  DEFAULT_RATE = 100
+  DEFAULT_RATE = 75
 
   scope :occuring_on, -> (day) {
     with_suggestions.
@@ -11,16 +11,22 @@ class Appointment < ActiveRecord::Base
 
   scope :current, -> {
     with_suggestions.
-    where("time_suggestions.start_at >= ?", DateTime.now.utc).
-    ordered
+      where("time_suggestions.start_at >= ?", DateTime.now.utc).
+      ordered
   }
 
   scope :approved, -> {
-    with_suggestions.where("time_suggestions.accepted_at IS NOT NULL")
+    current.where("time_suggestions.accepted_at IS NOT NULL")
   }
 
   scope :unapproved, -> {
     current - approved
+  }
+
+  scope :archived, -> {
+    with_suggestions.
+      where("time_suggestions.accepted_at IS NOT NULL AND
+             time_suggestions.start_at < NOW()")
   }
 
   scope :ordered, -> {
@@ -34,6 +40,10 @@ class Appointment < ActiveRecord::Base
       includes(:time_suggestions)
 
   }
+
+  def current?
+    self.class.current.include?(self)
+  end
 
   def approved?
     time_suggestions.approved.any?
