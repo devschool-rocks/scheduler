@@ -4,6 +4,21 @@ class Appointment < ActiveRecord::Base
 
   DEFAULT_RATE = 75
 
+  PAYMENT_TYPES = {
+    railsmentor: {
+      rate: 20, label: '$20 every 15 minutes @ RailsMentor'
+    },
+    codementor: {
+      rate: 25, label: '$25 every 15 minutes @ CodeMentor'
+    },
+    allotted: {
+      rate: 0, label: 'Nada suckah! This is my allotted Devschool session'
+    },
+    alacarte: {
+      rate: 10, label: '$15 every 15 minutes for additional Devschool tutoring'
+    }
+  }
+
   scope :occuring_on, -> (day) {
     with_suggestions.
       where("DATE(time_suggestions.start_at) = ?", day)
@@ -16,11 +31,17 @@ class Appointment < ActiveRecord::Base
   }
 
   scope :approved, -> {
-    current.where("time_suggestions.accepted_at IS NOT NULL")
+    with_suggestions.
+      where("time_suggestions.accepted_at IS NOT NULL")
+  }
+
+  scope :rejected, -> {
+    with_suggestions.
+      where("time_suggestions.rejected_at IS NOT NULL")
   }
 
   scope :unapproved, -> {
-    current - approved
+    current - current.approved
   }
 
   scope :archived, -> {
@@ -42,19 +63,42 @@ class Appointment < ActiveRecord::Base
   }
 
   def current?
-    self.class.current.include?(self)
+    Appointment.current.include?(self)
   end
 
   def approved?
-    time_suggestions.approved.any?
+    time_suggestions.last.accepted_at.present?
+  end
+
+  def unapproved?
+    !approved?
+  end
+
+  def rejected?
+    time_suggestions.last.rejected_at.present?
+  end
+
+  def archived?
+    Appointment.archived.include?(self)
   end
 
   def status_css
-    approved? ? "approved" : "unapproved"
+    archived_css     || rejected_css ||
+      unapproved_css || approved_css
+  end
+
+  %i[approved rejected unapproved archived].each do |m|
+    define_method "#{m}_css" do
+      m.to_s if send("#{m}?")
+    end
   end
 
   def start_at=(val)
     time_suggestions.build(start_at: val)
+  end
+
+  def last_rejected_at
+    time_suggestions.last.rejected_at
   end
 
   def suggested_start_at

@@ -10,7 +10,8 @@
     </div>
 
     <div id="currentUserId">
-      <%= current_customer.try(:id) %>
+      <%= current_customer.try(:id) ||
+            current_instructor.try(:id) %>
     </div>
 
     <%= javascript_include_tag "application" %>

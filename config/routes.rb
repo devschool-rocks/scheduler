@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   devise_for :instructors
 
   resources :agenda
+  resource :calendar, controller: :calendar
 
   authenticated :instructor do
     devise_scope :instructor do
       namespace :instructors do
         resources :appointments
-        resources :approvals, only: [:create]
-        resource  :calendar
+        resources :blackouts, only: [:index, :new, :create]
+        resources :approvals, only: [:create, :destroy]
       end
       root to: "instructors/appointments#index", as: :instructor_root
     end
@@ -19,9 +20,8 @@ Rails.application.routes.draw do
     devise_scope :customer do
       namespace :customers do
         resources :appointments, only: [:index, :create, :show]
-        resource  :calendar
       end
-      root to: "customers/calendar#show", as: :customer_root
+      root to: "calendar#show", as: :customer_root
     end
   end
 

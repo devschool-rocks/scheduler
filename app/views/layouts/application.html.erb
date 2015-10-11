@@ -9,11 +9,14 @@
       <%= yield %>
     </div>
 
+    <!-- used by javascript to determine if the
+         customer is logged in -->
     <div id="currentUserId">
-      <%= current_customer.try(:id) %>
+      <%= current_customer.try(:id) ||
+            current_instructor.try(:id) %>
     </div>
 
-    <%= render 'customers/modals/login_or_register' %>
+    <%= render 'modals/login_or_register' %>
     <%= javascript_include_tag "application" %>
     <%- if content_for?(:js) %>
       <script><%= yield(:js) %></script>

@@ -1,9 +1,0 @@
-<%= render 'hbs/agenda' %>
-<%= render 'customers/modals/agenda' %>
-<%= render 'customers/modals/book_slot' %>
-
-<div id="calendar" class="fill col-md-12">
-  <h1>Jim's Availability for <%= @calendar.month %> <%= @calendar.year %></h1>
-  <%= render partial: 'headers' %>
-  <%= render partial: 'week', collection: @calendar.to_a %>
-</div>

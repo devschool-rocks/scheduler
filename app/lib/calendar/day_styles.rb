@@ -1,6 +1,6 @@
 module Calendar
   class DayStyles
-    def initialize(date)
+    def initialize(date: Date.today)
       @date = date
     end
 

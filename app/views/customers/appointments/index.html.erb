@@ -9,18 +9,20 @@ $(document).ready(function() {
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
       <a href="#approved" aria-controls="approved" role="tab" 
-        data-toggle="tab">Upcoming</a>
+        data-toggle="tab">Upcoming (<%= @appointments.current.approved.length %>)</a>
     </li>
     <li role="presentation"><a href="#unapproved" aria-controls="unapproved" 
-        role="tab" data-toggle="tab">Awaiting approval (<%= @appointments.unapproved.count %>)</a>
+        role="tab" data-toggle="tab">Awaiting approval (<%= @appointments.unapproved.length %>)</a>
+    </li>
+    <li role="presentation"><a href="#rejected" aria-controls="rejected" 
+        role="tab" data-toggle="tab">Rejected (<%= @appointments.rejected.length %>)</a>
     </li>
     <li role="presentation"><a href="#archived" aria-controls="archived" 
-        role="tab" data-toggle="tab">History (<%= Appointment.archived.count %>)</a>
+        role="tab" data-toggle="tab">History (<%= @appointments.archived.length %>)</a>
     </li>
   </ul>
 
   <div class="tab-content">
-
     <div role="tabpanel" class="tab-pane active" id="approved">
       <%- if @appointments.current.approved.none? %>
         <h2>You have no approved appointments yet</h2>
@@ -32,7 +34,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col-md-12">
           <ul id="agenda" class="accepted-list list-unstyled">
-            <%= render partial: 'appointment', collection: @appointments.approved %>
+            <%= render partial: 'appointment', collection: @appointments.current.approved %>
           </ul>
         </div>
       </div>
@@ -44,6 +46,17 @@ $(document).ready(function() {
         <div class="col-md-12">
           <ul id="agenda" class="unapproved-list list-unstyled">
             <%= render partial: 'appointment', collection: @appointments.unapproved %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="rejected">
+      <h2>Rejected requests</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <ul id="agenda" class="rejected-list list-unstyled">
+            <%= render partial: 'appointment', collection: @appointments.rejected %>
           </ul>
         </div>
       </div>

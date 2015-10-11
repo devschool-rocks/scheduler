@@ -1,0 +1,32 @@
+<%= form_for [:customers, current_customer.appointments.build] do |f| %>
+  <%= f.hidden_field :start_at %>
+  <label>What kind of session are you booking?</label>
+  <div class="form-group">
+    <div class="radio-block">
+      <%= f.radio_button :payment_type, :railsmentor, checked: true %> <%= Appointment::PAYMENT_TYPES[:railsmentor][:label] %>
+    </div>
+    <div class="radio-block">
+      <%= f.radio_button :payment_type, :codementor %> <%= Appointment::PAYMENT_TYPES[:codementor][:label] %>
+    </div>
+  </div>
+
+  <label>Devschool students</label>
+  <div class="form-group">
+    <div class="radio-block">
+      <%= f.radio_button :payment_type, :alotted %> <%= Appointment::PAYMENT_TYPES[:allotted][:label] %>
+    </div>
+    <div class="radio-block">
+      <%= f.radio_button :payment_type, :alacarte %> <%= Appointment::PAYMENT_TYPES[:alacarte][:label] %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="appointment_notes">What do you want to accomplish in this session?</label>
+    <%= f.text_area :notes, autofocus: true, class: "form-control",
+      style: "height: 140px" %>
+</div>
+
+<div class="form-group">
+  <%= f.submit value: "Submit your appointment request now",
+    class: "btn btn-primary btn-block" %>
+            </div>
+          <%- end %>

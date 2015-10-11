@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: @appointment.approved? ? 'appointment_detail' : "suggestion",
+          object: @appointment %>
+    </div>
+  </div>
+
+</div>

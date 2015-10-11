@@ -5,26 +5,46 @@
   .hour {
     border: 1px solid #999;
     margin: 4px;
-    padding: 4px auto;
-    color: #666;
-    font-size: 2em;
+    font-size: 1.8em;
     display: block;
-    padding-left: 1em;
-    line-height: 3em;
+    padding: 0.5em 1em;
+
+    a, a:visited, a:active, a:hover {
+      text-decoration: none;
+    }
   }
 
   .unavailable {
     background-color: #ddd;
   }
 
-  .approved {
+  .hour.approved {
     background-color: #BAE2BA;
-    color: white;
+    border-color: rgba(126, 193, 126, 1);
+    text-shadow: 0.04em 0.04em 0px rgba(126, 193, 126, 1);
+    
+    a {
+      color: white;
+    }
   }
 
-  .unapproved {
+  .hour.unapproved {
     border: 2px dotted #BAE2BA;
-    color: green;
+    background-color: #F5F7F5;
+
+    a {
+      color: #3BB93B;
+    }
+  }
+
+  .hour.archived, 
+  .hour.rejected {
+    background-color: #eee;
+    border-color: #ddd;
+    
+    a {
+      color: #000;
+    }
   }
 
   .hour::after {

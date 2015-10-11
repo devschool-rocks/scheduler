@@ -1,8 +1,6 @@
-<span class="hidden-xs"><strong>You</strong>
-are scheduled with Jim at</span>
-<strong><%= local_time(appointment.approved_start_at) %></strong>
-<span class="pull-right right-link">
-<%= link_to customers_appointment_path(appointment) do %>
-    <%= glyph("eye_open", { tag: :span}) %>
-<% end %>
-</span>
+<%= link_to [:customers, appointment] do %>
+  <span class="hidden-xs"><strong>You</strong>
+  are scheduled with Jim at</span>
+  <strong><%= local_time(appointment.approved_start_at) %></strong>
+  </span>
+<%- end %>

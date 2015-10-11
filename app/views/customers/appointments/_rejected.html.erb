@@ -1,0 +1,5 @@
+<%= link_to [:customers, appointment] do %>
+  This appointment request was rejected at
+  <strong><%= local_time(appointment.last_rejected_at) %></strong>
+  </span>
+<%- end %>

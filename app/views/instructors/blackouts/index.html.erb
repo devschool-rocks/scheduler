@@ -1,0 +1,8 @@
+<%= link_to "Blackout time", new_instructors_blackout_path %>
+<table>
+  <tr>
+    <th>Starts at</th>
+    <th>Ends at</th>
+  </tr>
+<%= render partial: 'blackout_row', collection: @blackouts %>
+</table>

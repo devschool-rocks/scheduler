@@ -1,6 +1,6 @@
 require 'calendar'
 
-class Customers::CalendarController < Customers::ApplicationController
+class CalendarController < ApplicationController
 
   def show
     calendar
@@ -14,7 +14,7 @@ private
   end
 
   def calendar
-    @calendar ||= Calendar::Calendar.new(the_date)
+    @calendar ||= Calendar::Calendar.new(date: the_date)
   end
 
   def agenda

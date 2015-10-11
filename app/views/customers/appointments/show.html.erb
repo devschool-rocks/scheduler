@@ -1,8 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <%= render partial: @appointment.approved? ? 'appointment_detail' : "suggestion",
-          object: @appointment %>
+      <%- partial = case @appointment.status_css
+          when "approved"
+            "appointment_detail"
+          when "rejected"
+            "cancelled_detail"
+          when "unaccepted"
+            "suggested_detail"
+          else
+            "archived_detail"
+      end %>
+      <%= render partial: partial,
+        locals: { appointment: @appointment } %>
     </div>
   </div>
 

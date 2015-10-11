@@ -1,0 +1,31 @@
+<div class="modal" id="loginModal" role="dialog">
+  <div class="modal-dialog-full">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Sign in or register to book a time slot</h4>
+      </div>
+      <div class="modal-body">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render partial: 'devise/sessions/form',
+        locals: {
+          resource: Customer.new,
+          resource_name: :customer,
+          devise_mapping: Devise.mappings[:customer]
+      } %>
+    </div>
+    <div class="col-md-6">
+      <%= render partial: 'devise/registrations/form',
+        locals: {
+          resource: Customer.new,
+          resource_name: :customer,
+          devise_mapping: Devise.mappings[:customer]
+      } %>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+</div>

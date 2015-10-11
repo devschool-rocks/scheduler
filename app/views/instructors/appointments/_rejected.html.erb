@@ -1,0 +1,6 @@
+<%= link_to [:instructors, appointment] do %>
+  <strong><%= appointment.customer.name %></strong>
+  <span class="hidden-xs">was rejected at</span>
+  <strong><%= local_time(appointment.last_rejected_at) %></strong>
+  </span>
+<%- end %>

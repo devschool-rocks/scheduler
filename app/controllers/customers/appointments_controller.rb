@@ -23,6 +23,6 @@ private
 
   def appointment_params
     params.require(:appointment).
-           permit(:notes, :start_at)
+           permit(:notes, :start_at, :payment_type)
   end
 end

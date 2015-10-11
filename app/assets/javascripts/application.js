@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require local_time
 //= require handlebars-1.0.rc.1.min
 //= require jstz.min
@@ -22,10 +21,14 @@
 //= require_tree .
 
 $(document).ready(function() {
+  $("a[rel=popover]").popover();
+  $(".tooltip").tooltip();
+  $("a[rel=tooltip]").tooltip();
+
   var currentUserId = parseInt($("#currentUserId").html()) > 0;
+  var timezone = jstz.determine();
 
   $("body").on("click", "#agenda .hour.available", function(e) {
-    var timezone = jstz.determine();
     var startAt = $(e.currentTarget).html().trim();
     var startOn = $("#selectedDate").html().trim();
     var suggestion = moment(startOn + ' ' + startAt, "MMMM Do YYYY hh:mm a").toDate()
