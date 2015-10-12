@@ -41,7 +41,7 @@ class Appointment < ActiveRecord::Base
   }
 
   scope :unapproved, -> {
-    current - current.approved
+    current - current.approved - current.rejected
   }
 
   scope :archived, -> {
