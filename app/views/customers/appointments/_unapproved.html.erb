@@ -1,4 +1,4 @@
-<%= link_to [:customers, unapproved] do %>
+<%= link_to [:customers, appointment] do %>
   <span class="hidden-xs">You have requested an appointment for </span>
-  <strong><%= local_time(unapproved.start_at) %></strong>
+  <strong><%= local_time(appointment.start_at) %></strong>
 <%- end %>

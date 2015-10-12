@@ -6,16 +6,16 @@ class Appointment < ActiveRecord::Base
 
   PAYMENT_TYPES = {
     railsmentor: {
-      rate: 20, label: '$20 every 15 minutes @ RailsMentor'
+      rate: 20, label: '$20 every 15 minutes billed @ railsmentor'
     },
     codementor: {
-      rate: 25, label: '$25 every 15 minutes @ CodeMentor'
+      rate: 25, label: '$25 every 15 minutes billed @ codementor'
     },
     allotted: {
       rate: 0, label: 'Nada suckah! This is my allotted Devschool session'
     },
     alacarte: {
-      rate: 10, label: '$15 every 15 minutes for additional Devschool tutoring'
+      rate: 10, label: '$15 every 15 minutes tutoring'
     }
   }
 
@@ -93,6 +93,10 @@ class Appointment < ActiveRecord::Base
     end
   end
 
+  def rate
+    PAYMENT_TYPES[payment_type.to_sym][:rate]
+  end
+
   def start_at=(val)
     time_suggestions.build(start_at: val)
   end
@@ -112,3 +116,4 @@ class Appointment < ActiveRecord::Base
     appointment && appointment.start_at
   end
 end
+

@@ -1,0 +1,10 @@
+<div class="well">
+<h3>Appointment request with Jim OKelly</h3> 
+
+<h4>The start time is at <%= local_time(appointment.start_at) %>
+and the <%= render partial: "aggreed_rate", locals: { appointment: appointment } %>
+billed every 15 minutes</h4>
+
+<p>Your notes:</p>
+<p><strong><%= appointment.notes %></strong></p>
+</div>
