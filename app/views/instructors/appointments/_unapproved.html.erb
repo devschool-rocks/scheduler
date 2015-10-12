@@ -1,10 +1,10 @@
 <%= link_to instructors_approvals_path(appointment_id: appointment.id), method: :post do %>
-  <%= glyph("ok_circle", {:tag => :span}) %>
+  <%= glyph("ok_circle", { tag: :span }) %>
 <% end %>
 <%= link_to instructors_approval_path(appointment.id), 
   "data-confirm" => "Are you sure you want to reject this time?",
   "data-method" => :delete do %>
-  <%= glyph("ban-circle", {:tag => :span}) %>
+  <%= glyph("ban-circle", { tag: :span }) %>
 <% end %>
 <%= link_to [:instructors, appointment] do %>
   <strong><%= appointment.customer.name %></strong>
