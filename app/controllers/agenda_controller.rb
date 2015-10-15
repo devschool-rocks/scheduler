@@ -1,4 +1,5 @@
 class AgendaController < ApplicationController
+
   def show
     render json: { hours: agenda.to_a }
   end

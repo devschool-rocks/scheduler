@@ -2,7 +2,7 @@ module Calendar
   class Calendar
     attr_reader :month, :year
 
-    def initialize(date: Date.today)
+    def initialize(date=Date.today)
       @date = date
       @month = Date::MONTHNAMES[date.month]
       @year = date.year
@@ -17,12 +17,6 @@ module Calendar
     end
 
   private
-
-    attr_reader :appointments, :blackouts
-
-    def appointments_for_date(date)
-      appointments.select {|e| e.starts_at.to_date == date }
-    end
 
     def day_styles(date)
       DayStyles.new(date: date).to_s

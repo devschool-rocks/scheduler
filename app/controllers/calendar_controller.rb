@@ -14,7 +14,7 @@ private
   end
 
   def calendar
-    @calendar ||= Calendar::Calendar.new(date: the_date)
+    @calendar ||= Calendar::Calendar.new(the_date)
   end
 
   def agenda
