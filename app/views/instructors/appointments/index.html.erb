@@ -9,7 +9,7 @@ $(document).ready(function() {
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
       <a href="#approved" aria-controls="approved" role="tab" 
-                                                   data-toggle="tab">Upcoming (<%= @appointments.approved.length %>)</a>
+                                                   data-toggle="tab">Upcoming (<%= @appointments.current.approved.length %>)</a>
     </li>
     <li role="presentation"><a href="#unapproved" aria-controls="unapproved" 
         role="tab" data-toggle="tab">Requests waiting (<%= @appointments.unapproved.length %>)</a>
@@ -29,7 +29,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col-md-12">
           <ul id="agenda" class="accepted-list list-unstyled">
-            <%= render partial: 'appointment', collection: @appointments.approved %>
+            <%= render partial: 'appointment', collection: @appointments.current.approved %>
           </ul>
         </div>
       </div>
