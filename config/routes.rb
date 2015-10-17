@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     devise_scope :instructor do
       namespace :instructors do
         resources :appointments
-        resources :blackouts, only: [:index, :new, :create]
         resources :approvals, only: [:create, :destroy]
       end
       root to: "instructors/appointments#index", as: :instructor_root

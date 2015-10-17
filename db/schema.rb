@@ -11,32 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006080652) do
+ActiveRecord::Schema.define(version: 20151016233948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "customer_id"
-    t.text     "notes",        null: false
+    t.text     "notes",         null: false
     t.datetime "completed_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "hourly_rate"
     t.string   "payment_type"
+    t.integer  "instructor_id"
   end
 
   add_index "appointments", ["customer_id"], name: "index_appointments_on_customer_id", using: :btree
-
-  create_table "blackouts", force: :cascade do |t|
-    t.integer  "instructor_id"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "blackouts", ["instructor_id"], name: "index_blackouts_on_instructor_id", using: :btree
+  add_index "appointments", ["instructor_id"], name: "index_appointments_on_instructor_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",                                null: false
@@ -92,6 +84,6 @@ ActiveRecord::Schema.define(version: 20151006080652) do
   add_index "time_suggestions", ["suggester_type", "suggester_id"], name: "index_time_suggestions_on_suggester_type_and_suggester_id", using: :btree
 
   add_foreign_key "appointments", "customers"
-  add_foreign_key "blackouts", "instructors"
+  add_foreign_key "appointments", "instructors"
   add_foreign_key "time_suggestions", "appointments"
 end

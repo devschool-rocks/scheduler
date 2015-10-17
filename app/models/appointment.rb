@@ -1,5 +1,7 @@
 class Appointment < ActiveRecord::Base
   belongs_to :customer
+  belongs_to :instructor
+
   has_many :time_suggestions, dependent: :destroy
 
   DEFAULT_RATE = 75

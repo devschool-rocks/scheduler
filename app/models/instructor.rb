@@ -5,5 +5,4 @@ class Instructor < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :appointments
-  has_many :blackouts
 end

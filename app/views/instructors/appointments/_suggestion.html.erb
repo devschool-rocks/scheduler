@@ -1,7 +1,8 @@
 <div class="well">
-<h3>You have requested an appointment with Jim OKelly</h3> 
+<h3><%= suggestion.customer.name %> is requesting this appointment with you</h3>
 
-<h4>Starting on <%= suggestion.start_at %>
+<h4>Starting on <%= local_time(suggestion.start_at) %>
+
 with an agreed rate of <%= number_to_currency(Appointment::DEFAULT_RATE) %>/hr
 billed in increments of 15 minutes</h4>
 
