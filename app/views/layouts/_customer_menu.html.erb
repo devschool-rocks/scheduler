@@ -2,17 +2,21 @@
      role="navigation">
 <div class="container">
   <%= render 'layouts/navbar' %>
-  <%- if customer_signed_in? %>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Jim's Calendar", customer_root_path %></li>
-        <li><%= link_to "My appointments", customers_appointments_path %></li>
-      </ul>
+  <div id="navbar" class="collapse navbar-collapse">
+    <%- if customer_signed_in? %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Jim's Calendar", customer_root_path %></li>
+          <li><%= link_to "My appointments", customers_appointments_path %></li>
+        </ul>
 
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'sign out', destroy_customer_session_path %></li>
+        </ul>
+    <% else %>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'sign out', destroy_customer_session_path %></li>
+        <li><%= link_to 'sign in', new_customer_session_path %></li>
       </ul>
-    </div>
-  <%- end %>
+    <%- end %>
+  </div>
 </div>
 </nav>
