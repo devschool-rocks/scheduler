@@ -10,7 +10,11 @@ class CalendarController < ApplicationController
 private
 
   def the_date
-    params[:date]||Date.today
+    if params[:next_month]
+      Date.today + 31
+    else
+      Date.today
+    end
   end
 
   def calendar
