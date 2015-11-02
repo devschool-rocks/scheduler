@@ -11,7 +11,7 @@ private
 
   def the_date
     if params[:next_month]
-      Date.today + 31
+      Date.today.end_of_month + 1.day
     else
       Date.today
     end

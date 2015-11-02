@@ -2,31 +2,18 @@
 <%= render 'modals/agenda' %>
 <%= render 'modals/book_slot' %>
 
-<% if :next_month %>
-  <div container>
-    <div id="calendar" class="fill col-md-12">
-      <h2 class="text-center">
-        <span class="hidden-xs">Jim's availability for</span>
-        <%= calendar.month %> <%= calendar.year %></h2>
-      <%= render partial: 'calendar/headers' %>
-      <%= render partial: 'calendar/week', collection: calendar.to_a %>
-    </div>
-    <div id="current-month">
-      <%= link_to "<span class=\"glyphicon glyphicon-arrow-right\"></span>".html_safe, calendar_path(:next_month => :true) %>
-    </div>
+<div class="container">
+  <div id="calendar" class="fill col-md-12">
+    <h2 class="text-center">
+      <span class="hidden-xs">Jim's availability for</span>
+      <%= @calendar.month %> <%= @calendar.year %></h2>
+    <%= render partial: 'calendar/headers' %>
+    <%= render partial: 'calendar/week', collection: @calendar.to_a %>
   </div>
-<% else %>
-  <div container>
-    <div id="calendar" class="fill col-md-12">
-      <h2 class="text-center">
-        <span class="hidden-xs">Jim's availability for</span>
-        <%= calendar.month %> <%= calendar.year %></h2>
-      <%= render partial: 'calendar/headers' %>
-      <%= render partial: 'calendar/week', collection: calendar.to_a %>
-    </div>
-    <div id="next-month">
-      <%= link_to "<span class=\"glyphicon glyphicon-arrow-left\"></span>".html_safe, calendar_path %>
-    </div>
-  </div>
+</div>
+<% if params.has_key?(:next_month) %>
+  <%= render 'calendar/next_month' %>
+<% else  %>
+  <%= render 'calendar/current_month' %>
 <% end %>
 
