@@ -2,10 +2,24 @@
 <%= render 'modals/agenda' %>
 <%= render 'modals/book_slot' %>
 
-<div id="calendar" class="fill col-md-12">
-  <h2 class="text-center">
-    <span class="hidden-xs">Jim's availability for</span> 
-    <%= calendar.month %> <%= calendar.year %></h2>
-  <%= render partial: 'calendar/headers' %>
-  <%= render partial: 'calendar/week', collection: calendar.to_a %>
+<div class="container">
+  <div id="calendar" class="fill col-md-12">
+    <h2 class="text-center">
+      <span class="hidden-xs">Jim's availability for</span>
+      <%= calendar.month %> <%= calendar.year %></h2>
+    <%= render partial: 'calendar/headers' %>
+    <%= render partial: 'calendar/week', collection: calendar.to_a %>
+  </div>
+  <% if params.has_key?(:next_month) %>
+    <%= render 'calendar/next_month' %>
+    <h3 class="text-right">Brought to you by the
+      <a href="https://onlinedevschool.com">Devschool</a></h3>
+    </div>
+  <% else  %>
+    <%= render 'calendar/current_month' %>
+    <h3 class="text-right">Brought to you by the
+      <a href="https://onlinedevschool.com">Devschool</a></h3>
+    </div>
+  <% end %>
 </div>
+
