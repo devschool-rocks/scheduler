@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def brand
-    "Scheduling"
+    "Scheduler"
   end
   helper_method :brand
 
